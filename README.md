@@ -7,5 +7,5 @@
 A demo of this app can be tested at: [reliable-recommender.herokuapp.com](https://reliable-recommender.herokuapp.com)
 
 ### How it works
-The recommender uses the small MovieLens dataset with 9724 movies.
+The recommender uses the MovieLens dataset with 9724 movies.
 It calculates 1000 hidden features of the ratings-data for all movies with "non-negative matrix factorization" and recommends choices similar to the input.
