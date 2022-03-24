@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{my_title}}r</title>
+    <!-- style from the web -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/picnic">
+    <!-- style from css -->
+    <link rel="stylesheet" href="../static/style.css">
+</head><link rel="shortcut icon" href="{{ url_for('static', filename='favicon.svg')}}">
+<body>    
+    <main>
+        <h1>Now go to your sofa and watch the following movies:</h1>
+        <div class="wrapper --horizontal">
+            {% for i in range(movie_info.shape[0])%}
+            <div class="poster">
+                <a href={{movie_info.link[i]}} target="_blank">
+                    <img src={{movie_info.image_url[i]}} 
+                    style='width: 100%; object-fit: scale-up; min-width:50px; max-width:220px'>
+                </a>
+                <div class="information">
+                    <span id="movietitle">{{movie_info.title[i]}}</span>
+                    <span id="overview">{{movie_info.overview[i]}}</span>
+                    <span>Release Date: {{movie_info.release_date[i]}}</span>
+                    <span>TMDB-Rating: {{movie_info.average_rating[i]}}</span>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <form action="/">
+            <input type="submit" value="Return to main page" />
+        </form>
+    </main>
+</body>
+</html>

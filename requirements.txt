@@ -1,0 +1,8 @@
+flask==2.0.2
+numpy
+pandas
+sklearn
+joblib
+pickle5
+tmdbv3api
+gunicorn

@@ -1,0 +1,155 @@
+
+body {
+    background: url("../static/cinema.jpg") no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    text-align: center;
+}
+ 
+h1 {
+    color:rgb(255, 255, 255);
+    text-shadow: 3px 3px #464646b2;
+    text-align: center;
+    font-stretch: expanded;
+    font-size: xx-large;
+}
+
+p {
+    color:rgb(255, 255, 255);
+    text-shadow: 3px 3px #464646b2;
+}
+
+ul {
+    color:rgb(255, 255, 255);
+    text-shadow: 1px 1px #888888b2;
+    font-size: xx-large;
+}
+
+h1:hover {
+    text-shadow: 2px 2px #888888b2;
+}
+
+p:hover {
+    text-shadow: 2px 2px #888888b2;    
+}
+
+.wrapper {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(minmax(100px, 1fr));
+  color:rgb(236, 236, 236);
+}
+
+.wrapper.--horizontal {
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(5, 1fr);
+  width:50%;
+  max-width:500xp;
+  margin: 0 auto;
+}
+
+.poster { 
+  background-color: rgba(0, 0, 0, 0.815);
+  padding: 1em;
+  border: 1px solid rgba(204, 204, 204, 0.753);
+  grid-auto-flow: column;
+  display: grid;
+  gap: 2rem;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  box-shadow: 1px 1px 3px;
+}
+
+.poster:hover { 
+    background-color: rgba(0, 0, 0, 0.904);
+    border: 1px solid rgba(243, 243, 243, 0.746);
+    box-shadow: 2px 2px 5px;
+}
+
+.information {
+  display: grid;
+  margin-right: 1em;
+}
+
+.information #overview {
+  text-align: justify;
+}
+
+.information #movietitle {
+  font-weight: bold;
+  font-size: x-large;
+}
+
+#prompt {
+    color:rgb(255, 255, 255);
+    font-size: 150%;
+    text-align: center;
+}
+
+#logo {
+    border-radius: 50px;
+    box-shadow: 1px 1px 3px rgba(94, 94, 94, 0.671);
+    /* box-shadow: 4px 4px 8px rgba(37, 37, 37, 0.671); */
+}
+
+#logo:hover {
+    box-shadow: 4px 4px 8px rgba(37, 37, 37, 0.671);
+}
+
+.placeholder {
+    background-color: rgba(0, 0, 0, 0.767);
+    width: 95%;
+    max-width: 500px;
+    box-shadow: 2px 2px 4px;
+    color: rgb(230, 230, 230);
+}
+
+.placeholder:hover {
+    background-color: rgba(36, 36, 36, 0.733);
+    box-shadow: 4px 4px 8px;
+}
+
+::placeholder {  
+    color: rgb(230, 230, 230);
+    line-height: normal; 
+}
+
+
+select.placeholder, textarea { 
+    background: cyan; 
+}
+
+@media (orientation: portrait) {
+.placeholder {
+    background-color: rgba(0, 0, 0, 0.767);
+    max-width: 95%;
+    box-shadow: 2px 2px 4px;
+    color: rgb(230, 230, 230);
+}
+.wrapper.--horizontal {
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(5, 1fr);
+  width:95%;
+  max-width:500xp;
+  margin: 0 auto;
+}
+}
+
+@media (orientation: landscape) {
+.placeholder {
+    background-color: rgba(0, 0, 0, 0.767);
+    width: 95%;
+    max-width: 500px;
+    box-shadow: 2px 2px 4px;
+    color: rgb(230, 230, 230);
+}
+.wrapper.--horizontal {
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(5, 1fr);
+  width:50%;
+  max-width:500xp;
+  margin: 0 auto;
+}
+}
+

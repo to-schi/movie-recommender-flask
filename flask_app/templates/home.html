@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reliable Recommender</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/picnic">
+
+    <link rel="stylesheet" href="../static/style.css">
+  
+</head><link rel="shortcut icon" href="{{ url_for('static', filename='favicon.svg')}}">
+<body>
+            <h1>THE RELIABLE RECOMMENDER</h1>
+            <a href="https://www.themoviedb.org/movie/2605-short-circuit" target="_blank">
+            <img id="logo" src="../static/more_input.jpg" style='width: 90%; object-fit: scale-up; max-width:500px'/>
+            </a>
+            <p id="prompt">Fill in up to 10 of your favorite movies:</p>
+            <!-- On submit it sends the form-data to the recommendation url -->
+            <form action="/check">
+                <input class="placeholder" type="text" name="Movie1" placeholder="Movie Title"><br>
+                <input class="placeholder" type="text" name="Movie2" placeholder="Movie Title"><br>
+                <input class="placeholder" type="text" name="Movie3" placeholder="Movie Title"><br>
+                <input class="placeholder" type="text" name="Movie4" placeholder="Movie Title"><br>
+                <input class="placeholder" type="text" name="Movie5" placeholder="Movie Title"><br>
+                <input class="placeholder" type="text" name="Movie6" placeholder="Movie Title"><br>
+                <input class="placeholder" type="text" name="Movie7" placeholder="Movie Title"><br>
+                <input class="placeholder" type="text" name="Movie8" placeholder="Movie Title"><br>
+                <input class="placeholder" type="text" name="Movie9" placeholder="Movie Title"><br>
+                <input class="placeholder" type="text" name="Movie10" placeholder="Movie Title"><br>
+                <p>(MovieLens dataset of 9724 movies, last updated 9/2018)</p>
+                <input type="submit" , value="Check Titles">
+            </form>
+            
+</body>
+</html>  
