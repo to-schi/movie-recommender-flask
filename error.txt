@@ -1,0 +1,2 @@
+n_components: 1000, max_iter: 500, error: 7.728141614743725
+

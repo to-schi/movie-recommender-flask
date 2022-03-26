@@ -31,7 +31,7 @@ def make_movie_info(movie_ids):
             # for the movie_id-list
             tmdb_id = links.at[i, 'tmdbId']
 
-        t = TMDBInfo(movieId=tmdb_id, api_key=tmdb.api_key, tmdb=tmdb)
+        t = TMDBInfo(movieId=tmdb_id, api_key=tmdb.api_key)
         overview, image_url, title, average_rating, release_date = t.get_details()
         movie_link = 'https://www.themoviedb.org/movie/'+str(tmdb_id)
         if overview == "empty":
