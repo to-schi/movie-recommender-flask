@@ -1,1 +1,2 @@
-n_components: 1000, max_iter: 500, error: 0.6721557754581724
+n_components: 500, max_iter: 1000, error: 161.48448391262622
+n_components: 1000, max_iter: 500, error: 7.728141614743725

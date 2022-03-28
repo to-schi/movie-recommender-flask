@@ -14,8 +14,8 @@ ratings = pd.read_csv('./flask_app/data/ratings.csv')
 ratings = ratings.drop(columns=['timestamp'])
 
 #set parameters
-n_components = 2000
-max_iter = 1000
+n_components = 1000
+max_iter = 500
 
 def compressed_pickle(data, filename):
     with bz2.BZ2File(filename + '.pbz2', 'w') as f:
@@ -25,7 +25,7 @@ def prepare_data(data):
     ratings_wide = pd.pivot_table(
         data, index='userId', columns='movieId', values='rating')
     ratings_wide = ratings_wide.fillna(0)
-    
+
     ratings_wide.to_csv(f"./R_small.csv", index=None)
     logging.critical("R_small.csv saved.")
     R_empty = ratings_wide[0:0]
@@ -40,7 +40,6 @@ def train_nmf(data, n_components=n_components, max_iter=max_iter):
             init='random',
             random_state=10,
             max_iter=max_iter,
-            solver='cd'
             )
     nmf.fit(R)
 

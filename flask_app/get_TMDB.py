@@ -26,7 +26,6 @@ class TMDBInfo:
         """
         movieId = self.movieId
         movie = Movie()
-        print(movie)
         m = movie.details(movieId)
         # API-answer can be None, this way an error will be avoided:
         overview = getattr(m, 'overview', 'empty') 
