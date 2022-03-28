@@ -1,4 +1,4 @@
-[![Heroku](https://github.com/dhalenok/pyheroku-badge/raw/master/img/deployed.svg)](https://reliable-recommender.herokuapp.com)s
+[![Heroku](https://github.com/dhalenok/pyheroku-badge/raw/master/img/deployed.svg)](https://reliable-recommender.herokuapp.com)
 # Type in your favorite movies and get matching recommendations!
 ### 1. Type in up to 10 of your favorite movies.
 ### 2. Check if the movies in the list are the correct selection.
