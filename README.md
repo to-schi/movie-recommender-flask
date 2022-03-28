@@ -1,3 +1,4 @@
+[![Heroku](https://github.com/dhalenok/pyheroku-badge/raw/master/img/deployed.svg)](https://reliable-recommender.herokuapp.com)s
 # Type in your favorite movies and get matching recommendations!
 ### 1. Type in up to 10 of your favorite movies.
 ### 2. Check if the movies in the list are the correct selection.
@@ -10,4 +11,4 @@ A demo of this app can be tested at: [reliable-recommender.herokuapp.com](https:
 The recommender uses the MovieLens dataset with 9724 movies.
 It calculates 1000 hidden features of the ratings-data for all movies with "non-negative matrix factorization" and recommends items similar to the input.
 
-[![Heroku](https://pyheroku-badge.herokuapp.com/?app=<HEROKU_APP_NAME>&path=<ROUTE>&style=<STYLE>)](https://reliable-recommender.herokuapp.com)
+
