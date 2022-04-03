@@ -2,7 +2,7 @@ from flask import Flask, render_template, request
 from flask_app.recommender import nmf_recommender, title_to_movieid
 from flask_app.get_TMDB import TMDBInfo
 from flask_app.tmdb_config import API_KEY
-from tmdbv3api import TMDb, Movie
+from tmdbv3api import TMDb
 import pandas as pd
 import logging
 
@@ -94,4 +94,4 @@ def result():
 
 if __name__ == '__main__':
     # app launches the server
-    app.run(debug=False)
+    app.run(debug=True)

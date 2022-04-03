@@ -1,6 +1,6 @@
 import pandas as pd
 import numpy as np
-from difflib import get_close_matches
+from rapidfuzz import fuzz, process
 import pickle
 import bz2
 import logging
@@ -16,24 +16,12 @@ new_user_id = R_col.index.max()+1
 
 
 def title_to_movieid(title):
-    '''To find title in "movies"-dataframe and corresponding movie_id'''
-    movie = get_close_matches(title, movies['title'], n=1, cutoff=0.6)
     try:
-        movie_id = movies.index[movies['title'] == movie[0]].tolist()[0]
-
+        movie_, ratio_, movie_id = process.extractOne(title,movies['title'], scorer=fuzz.WRatio)
     except:
-        # if get_close_matches cannot find a match:
         movie_id = None
         logging.critical(f"Movie {title} not found!")
     return movie_id
-
-
-def movieid_to_title(id_list):
-    recommendations = []
-    for movie_id in id_list:
-        title = movies.at[movie_id, 'title']
-        recommendations.append(movie_id)
-    return recommendations
 
 
 def make_user_frame(query, R_col):
@@ -83,6 +71,5 @@ def nmf_recommender(query, k=10):
     # make a sorted list of recommended movies (ids)
     R_hat_top = R_hat.transpose().sort_values(
         by=[new_user_id], axis=0, ascending=False).head(k)
-    recom = movieid_to_title(list(R_hat_top.index))
-    # tuple: ("title", "movie_id")
+    recom = list(R_hat_top.index)
     return recom
