@@ -7,7 +7,7 @@ import logging
 
 MODEL = "./flask_app/model/nmf_nc500_max_iter1000.pbz2"
 DATA_PATH = "./flask_app/data/"
-R_col = pd.read_csv(DATA_PATH+'R_col_small.csv')
+R_col = pd.read_csv(DATA_PATH+'R_col.csv')
 R_col.columns = R_col.columns.astype(int)
 movies = pd.read_csv(DATA_PATH+'movies_year.csv',
                      sep=";", index_col='movieId')
@@ -16,13 +16,20 @@ new_user_id = R_col.index.max()+1
 
 
 def title_to_movieid(title):
-    try:
-        movie_, ratio_, movie_id = process.extractOne(title,movies['title'], scorer=fuzz.WRatio)
-    except:
-        movie_id = None
+    movie_, ratio_, movie_id = process.extractOne(title,movies['title'], scorer=fuzz.WRatio)
+    logging.critical(f"Movie {movie_id} = {title}")
+    if pd.isna(movie_id) == True:
         logging.critical(f"Movie {title} not found!")
-    return movie_id
+    else:
+        return movie_id
 
+# def movieid_to_title(id_list):
+#     recommendations = []
+#     for movie_id in id_list:
+#         title = movies.at[movie_id, 'title']
+#         #year = movies.at[movie_id, 'year']
+#         recommendations.append(movie_id)
+#     return recommendations
 
 def make_user_frame(query, R_col):
     new_user = np.zeros(shape=(1, len(R_col.columns))).tolist()[0]
@@ -71,5 +78,6 @@ def nmf_recommender(query, k=10):
     # make a sorted list of recommended movies (ids)
     R_hat_top = R_hat.transpose().sort_values(
         by=[new_user_id], axis=0, ascending=False).head(k)
-    recom = list(R_hat_top.index)
+    #recom = list(R_hat_top.index)
+    recom =  list(R_hat_top.index)
     return recom

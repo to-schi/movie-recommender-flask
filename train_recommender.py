@@ -14,8 +14,8 @@ ratings = pd.read_csv('./flask_app/data/ratings.csv')
 ratings = ratings.drop(columns=['timestamp'])
 
 #set parameters
-n_components = 1000
-max_iter = 500
+n_components = 500
+max_iter = 1000
 
 def compressed_pickle(data, filename):
     with bz2.BZ2File(filename + '.pbz2', 'w') as f:
@@ -40,6 +40,7 @@ def train_nmf(data, n_components=n_components, max_iter=max_iter):
             init='random',
             random_state=10,
             max_iter=max_iter,
+            solver='cd'
             )
     nmf.fit(R)
 
@@ -53,7 +54,7 @@ def train_nmf(data, n_components=n_components, max_iter=max_iter):
 
     with open("./error.txt", 'a') as file:
         file.write(
-            f"n_components: {n_components}, max_iter: {max_iter}, error: {error}"
+            f"n_components: {n_components}, max_iter: {max_iter}, reconstruction_err_: {error}\n"
             )
 
 train_nmf(ratings)

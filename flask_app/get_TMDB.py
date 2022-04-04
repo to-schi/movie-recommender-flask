@@ -26,16 +26,16 @@ class TMDBInfo:
         """
         movieId = self.movieId
         movie = Movie()
-        m = movie.details(movieId)
-        # API-answer can be None, this way an error will be avoided:
-        overview = getattr(m, 'overview', 'empty') 
-        title = getattr(m, 'title', 'empty')
-        vote_average = getattr(m, 'vote_average', 'empty')
-        release_date = getattr(m, 'release_date', 'empty')
-        poster = getattr(m, 'poster_path', 'empty')
-        image_base = 'http://image.tmdb.org/t/p/w500/'
-        image_url = image_base+poster
+        try:
+            m = movie.details(movieId)
+            overview = getattr(m, 'overview', None)
+            title = getattr(m, 'title', None)
+            vote_average = getattr(m, 'vote_average', None)
+            release_date = getattr(m, 'release_date', None)
+            poster = getattr(m, 'poster_path', None)
+            image_base = 'http://image.tmdb.org/t/p/w500/'
+            image_url = image_base+poster
+        except:
+            return None,None,None,None,None
+
         return overview, image_url, title, vote_average, release_date
-
-
-
