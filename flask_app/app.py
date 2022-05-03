@@ -19,7 +19,6 @@ links = pd.read_csv('./flask_app/data/links.csv', index_col='movieId')
 def home():
     return render_template('home.html')
 
-
 def make_movie_info(movie_ids):
     movie_info = pd.DataFrame(
         columns=["title", "overview", "image_url", "average_rating", "release_date"])
@@ -40,22 +39,19 @@ def make_movie_info(movie_ids):
         # If title_to_movieid finds no match and returns "None", no info will be displayed:
         else:
             movie_info[i] = ""
-
     return movie_info
-
 
 @app.route("/check")
 def check():
     # Get values from server request-url (user-input)
     request_dict = request.args.to_dict()
+    input_list = list(request_dict.values())
     # Save input in session-variable for later use in function def result():
-    session['input_list'] = list(request_dict.values())
+    session['input_list'] = input_list
     logging.critical(f"check Input: {session['input_list']}")
-    #input_list = list(request_dict.values())
-    #logging.critical(f"check INPUT: {input_list}")
     # Get movie-id-list from input
     movie_id_list = []
-    for title in session['input_list']:
+    for title in input_list:
         if title == "":
             continue
         else:
@@ -74,8 +70,8 @@ def check():
 def result():
     # get values from server request-url (user-input)
     try:
-        movie_list = session['input_list']
-        logging.critical(f"recommendation INPUT: {movie_list}")
+        input_list = session.get('input_list', None)
+        logging.critical(f"recommendation INPUT: {input_list}")
     except:
         logging.critical(f"recommendation INPUT: None")
         return home()
@@ -83,7 +79,7 @@ def result():
     # movie-list is transformed into a query-dictionary with an
     # automatic rating-value "5" for every favorite movie in the list:
     query = {}
-    for movie in movie_list:
+    for movie in input_list:
         if movie == "":
             continue
         else:
