@@ -7,15 +7,13 @@ import pandas as pd
 import logging
 import os
 
+
 app = Flask(import_name=__name__)
 app.secret_key = os.urandom(12).hex()
-
 # initiate TMDB-API
 tmdb = TMDb()
 tmdb.api_key = API_KEY
-DATA_PATH = "./flask_app/data/"
-links = pd.read_csv(DATA_PATH+'links.csv', index_col='movieId')
-
+links = pd.read_csv('./flask_app/data/links.csv', index_col='movieId')
 
 @app.route("/")
 def home():
@@ -25,7 +23,7 @@ def home():
 def make_movie_info(movie_ids):
     movie_info = pd.DataFrame(
         columns=["title", "overview", "image_url", "average_rating", "release_date"])
-    #Get TMDB-movie_ids from "links.csv"
+    # Get TMDB-movie_ids from "links.csv"
     for i in movie_ids:
         if i != None:
             tmdb_id = links.at[i, 'tmdbId']
@@ -39,7 +37,7 @@ def make_movie_info(movie_ids):
                              "release_date": release_date, "link": movie_link}
                 movie_info = pd.concat(
                     [movie_info, pd.DataFrame.from_records([tmdb_data])], ignore_index=True)
-        # If title_to_movieid finds no match and returns "None":
+        # If title_to_movieid finds no match and returns "None", no info will be displayed:
         else:
             movie_info[i] = ""
 
@@ -48,13 +46,13 @@ def make_movie_info(movie_ids):
 
 @app.route("/check")
 def check():
-    # The input-list must be global for use in the next function (def result)
-    global input_list
     # Get values from server request-url (user-input)
     request_dict = request.args.to_dict()
-    #input_list = list(request_dict.values())
+    # Save input in session-variable for later use in function def result():
     session['input_list'] = list(request_dict.values())
     logging.critical(f"check Input: {session['input_list']}")
+    #input_list = list(request_dict.values())
+    #logging.critical(f"check INPUT: {input_list}")
     # Get movie-id-list from input
     movie_id_list = []
     for title in session['input_list']:
@@ -75,9 +73,15 @@ def check():
 @app.route("/recommendation")
 def result():
     # get values from server request-url (user-input)
-    movie_list = session['input_list']
-    logging.critical(f"recommendation INPUT: {movie_list}")
-    # movie-list is transformed into a query-dictionary with an automatic rating-value "5" for every favorite movie in the list:
+    try:
+        movie_list = session['input_list']
+        logging.critical(f"recommendation INPUT: {movie_list}")
+    except:
+        logging.critical(f"recommendation INPUT: None")
+        return home()
+
+    # movie-list is transformed into a query-dictionary with an
+    # automatic rating-value "5" for every favorite movie in the list:
     query = {}
     for movie in movie_list:
         if movie == "":
