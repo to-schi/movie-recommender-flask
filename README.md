@@ -5,7 +5,7 @@
 ### 2. Check if the movies in the list are the correct selection.
 ### 3. Get recommendations according to your list.
 \
-[![demo](./img/reliable-recommender.gif)](https://reliable-recommender.herokuapp.com)
+[![demo](./img/reliable-recommender.gif)](https://reliable-recommender.herokuapp.com)  
 A demo of this app can be tested at: [reliable-recommender.herokuapp.com](https://reliable-recommender.herokuapp.com)
 
 ### How it works
