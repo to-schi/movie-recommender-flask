@@ -6,7 +6,7 @@
 ### 3. Get recommendations according to your list.
 \
 [![demo](./img/reliable-recommender.gif)](https://reliable-recommender.herokuapp.com)  
-A demo of this app can be tested at: [reliable-recommender.herokuapp.com](https://reliable-recommender.herokuapp.com)
+A demo of this app can be tested at: [reliable-recommender.herokuapp.com](https://reliable-recommender.herokuapp.com) (no longer available)
 
 ### How it works
 The recommender uses the MovieLens dataset with 9724 movies.
